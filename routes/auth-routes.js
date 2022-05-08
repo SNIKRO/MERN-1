@@ -54,7 +54,8 @@ router.post('/login',
 
     const errors = validationResult(req)
 
-    if(!errors.isEmpty){
+
+    if(!errors.isEmpty()){
       return res.status(400).json({
         errors: errors.array(),
         message: 'Incorrect data on login'
@@ -77,14 +78,14 @@ router.post('/login',
 
     const token = jwt.sign(
       { userId: user.id },
-      config.getw('jwtSecret'),
+      config.get('jwtSecret'),
       { expiresIn: '1h' }
     )
 
     res.json({ token, userId: user.id})
 
   } catch (error) {
-    res.status(500).json({ message: "Something go wrong"})
+    res.status(500).json({ message: "Something go wrong!!!"})
   }
 
 })
